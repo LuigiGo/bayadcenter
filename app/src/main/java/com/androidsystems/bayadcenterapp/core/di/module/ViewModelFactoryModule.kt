@@ -1,13 +1,15 @@
 package com.androidsystems.bayadcenterapp.core.di.module
 
 import com.androidsystems.bayadcenterapp.data.network.repository.Repository
-import com.androidsystems.bayadcenterapp.ui.promos.list.PromosViewModelFactory
+import com.androidsystems.bayadcenterapp.ui.promos.list.PromoListViewModelFactory
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import dagger.Provides
 
 @Module
-abstract class ViewModelFactoryModule {
+class ViewModelFactoryModule {
 
-    @ContributesAndroidInjector
-    abstract fun bindsPromosViewModelFactory(repository: Repository): PromosViewModelFactory
+    @Provides
+    fun providesPromoListViewModelFactory(repository: Repository): PromoListViewModelFactory {
+        return PromoListViewModelFactory(repository)
+    }
 }
