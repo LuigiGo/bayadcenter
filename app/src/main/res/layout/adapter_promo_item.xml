@@ -8,7 +8,7 @@
     android:paddingVertical="16dp">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgPromoStatus"
+        android:id="@+id/ivPromoStatus"
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:src="@drawable/bg_promo_status_indicator"
@@ -26,7 +26,7 @@
         android:maxLines="1"
         android:text="Promo name"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imgPromoStatus"
+        app:layout_constraintStart_toEndOf="@+id/ivPromoStatus"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
