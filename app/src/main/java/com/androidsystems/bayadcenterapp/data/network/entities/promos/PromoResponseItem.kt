@@ -1,4 +1,4 @@
-package com.androidsystems.bayadcenterapp.data.entities
+package com.androidsystems.bayadcenterapp.data.network.entities.promos
 
 import com.google.gson.annotations.SerializedName
 
