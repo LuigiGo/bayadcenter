@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.androidsystems.bayadcenterapp.data.network.repository.Repository
 
-class PromosViewModelFactory(private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
+class PromoListViewModelFactory(private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
