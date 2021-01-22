@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.androidsystems.bayadcenterapp.R.layout
 import com.androidsystems.bayadcenterapp.core.base.BaseActivity
 import com.androidsystems.bayadcenterapp.core.utils.Status.SUCCESS
-import com.androidsystems.bayadcenterapp.data.network.base.NetworkServiceApi
+import com.androidsystems.bayadcenterapp.data.network.repository.RepositoryImpl
 import com.androidsystems.bayadcenterapp.data.network.web.promos.PromosDataSourceImpl
 import kotlinx.android.synthetic.main.activity_promo_list.textView
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 class PromoListActivity : BaseActivity() {
 
-//    @Inject
-//    lateinit var networkServiceApi: NetworkServiceApi
+    @Inject
+    lateinit var promoDataSourceImpl: PromosDataSourceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,20 +25,20 @@ class PromoListActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
 
-//        val dataSource = PromosDataSourceImpl(networkServiceApi)
+        val repository = RepositoryImpl(promoDataSourceImpl)
 
-//        GlobalScope.launch(Dispatchers.Main) {
-//            val promos = dataSource.getPromos()
-//            dataSource.downloadedPromoList.observe(this@PromoListActivity, androidx.lifecycle.Observer {
-//                when (it.status) {
-//                    SUCCESS -> {
-//                        textView.text = it.data.toString()
-//                    }
-//                    else -> {
-//                    }
-//                }
-//            })
-//
-//        }
+        GlobalScope.launch(Dispatchers.Main) {
+            val promos = repository.getPromoList()
+            promos.observe(this@PromoListActivity, androidx.lifecycle.Observer {
+                when (it.status) {
+                    SUCCESS -> {
+                        textView.text = it.data.toString()
+                    }
+                    else -> {
+                    }
+                }
+            })
+
+        }
     }
 }
