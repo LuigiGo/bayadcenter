@@ -8,5 +8,5 @@ interface PromosDataSource {
 
     val downloadedPromoList: LiveData<Resource<PromoResponse>>
 
-    suspend fun getPromos()
+    suspend fun getPromoList()
 }
