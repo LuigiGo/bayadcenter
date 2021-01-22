@@ -1,6 +1,7 @@
 package com.androidsystems.bayadcenterapp.core.di.component
 
 import com.androidsystems.bayadcenterapp.core.App
+import com.androidsystems.bayadcenterapp.core.di.module.ActivityBindingModule
 import com.androidsystems.bayadcenterapp.core.di.module.AppModule
 import com.androidsystems.bayadcenterapp.core.di.module.NetworkModule
 import dagger.BindsInstance
@@ -12,7 +13,8 @@ import dagger.android.support.AndroidSupportInjectionModule
     modules = [
         AndroidSupportInjectionModule::class,
         AppModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        ActivityBindingModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {
