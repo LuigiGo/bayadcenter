@@ -2,12 +2,21 @@ package com.androidsystems.bayadcenterapp.core.di.module
 
 import android.content.Context
 import com.androidsystems.bayadcenterapp.core.App
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 
 @Module
-abstract class AppModule {
+class AppModule {
 
-    @Binds
-    abstract fun bindApplicationContext(app: App): Context
+
+    @Provides
+    fun providesApplicationContext(app: App): Context{
+        return app.applicationContext
+    }
+
+    @Provides
+    fun providesCompositeDisposable(): CompositeDisposable{
+        return CompositeDisposable()
+    }
 }
