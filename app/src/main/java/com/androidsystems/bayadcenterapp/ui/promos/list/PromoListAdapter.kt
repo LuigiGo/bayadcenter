@@ -6,28 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.androidsystems.bayadcenterapp.R
-import com.androidsystems.bayadcenterapp.data.network.entities.promos.PromoResponseItem
-import com.google.android.material.textview.MaterialTextView
+import com.androidsystems.bayadcenterapp.data.network.entities.promos.PromoItem
 import java.util.ArrayList
 import javax.inject.Inject
 
 interface OnItemClickListener {
-    fun onItemClicked(promoItem: PromoResponseItem)
+    fun onItemClicked(promoItem: PromoItem)
+    fun onItemLongClicked(promoItem: PromoItem)
 }
 
 class PromoListAdapter @Inject constructor(
     private val context: Context
 ) : RecyclerView.Adapter<PromoListAdapter.ViewHolder>() {
 
-    private var mData = ArrayList<PromoResponseItem>()
+    private var mData = ArrayList<PromoItem>()
     private lateinit var mListener: OnItemClickListener
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val ivPromoStatus = v.findViewById<ImageView>(R.id.ivPromoStatus)
-        val tvPromoName = v.findViewById<MaterialTextView>(R.id.tvPromoName)
-        val tvPromoDetails = v.findViewById<MaterialTextView>(R.id.tvPromoDetails)
+        var tvPromoName = v.findViewById<TextView>(R.id.tvPromoName)
+        val tvPromoDetails = v.findViewById<TextView>(R.id.tvPromoDetails)
     }
 
     @SuppressLint("InflateParams")
@@ -36,7 +37,7 @@ class PromoListAdapter @Inject constructor(
         return ViewHolder(v)
     }
 
-    fun setData(data: ArrayList<PromoResponseItem>) {
+    fun setData(data: ArrayList<PromoItem>) {
         mData = data
     }
 
@@ -50,7 +51,6 @@ class PromoListAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val promoItem = mData[position]
-
         val isPromoUnread = (promoItem.read != 1)
 
         holder.ivPromoStatus.isEnabled = isPromoUnread
@@ -60,6 +60,11 @@ class PromoListAdapter @Inject constructor(
 
         holder.itemView.setOnClickListener {
             mListener.onItemClicked(promoItem)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            mListener.onItemLongClicked(promoItem)
+            return@setOnLongClickListener true
         }
     }
 }
