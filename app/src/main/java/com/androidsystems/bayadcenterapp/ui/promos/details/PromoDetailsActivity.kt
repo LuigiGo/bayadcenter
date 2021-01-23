@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.androidsystems.bayadcenterapp.R
 import com.androidsystems.bayadcenterapp.core.base.BaseActivity
 import com.androidsystems.bayadcenterapp.core.utils.INTENT_EXTRAS_PROMO_ITEM
-import com.androidsystems.bayadcenterapp.data.network.entities.promos.PromoResponseItem
+import com.androidsystems.bayadcenterapp.data.network.entities.promos.PromoItem
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_promo_details.ivPromoBanner
@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.adapter_promo_item.tvPromoDetails
 
 class PromoDetailsActivity : BaseActivity() {
 
-    private lateinit var mPromoItem: PromoResponseItem
+    private lateinit var mPromoItem: PromoItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class PromoDetailsActivity : BaseActivity() {
 
     private fun initData() {
         val promoItemExtras = intent.getStringExtra(INTENT_EXTRAS_PROMO_ITEM)
-        mPromoItem = Gson().fromJson(promoItemExtras, PromoResponseItem::class.java)
+        mPromoItem = Gson().fromJson(promoItemExtras, PromoItem::class.java)
     }
 
     override fun onStart() {
