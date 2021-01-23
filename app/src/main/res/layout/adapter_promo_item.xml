@@ -7,17 +7,18 @@
     android:paddingHorizontal="16dp"
     android:paddingVertical="16dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/ivPromoStatus"
-        android:layout_width="10dp"
+        android:layout_width="15dp"
         android:layout_height="10dp"
+        android:paddingEnd="5dp"
         android:src="@drawable/bg_promo_status_indicator"
         app:layout_constraintBottom_toBottomOf="@+id/tvPromoName"
         app:layout_constraintStart_toStartOf="@+id/tvPromoDetails"
         app:layout_constraintTop_toTopOf="@+id/tvPromoName"
         tools:visibility="visible" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/tvPromoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivPromoStatus"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/tvPromoDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
